@@ -33,6 +33,8 @@ pipeline {
                         withCredentials([file(credentialsId: 'iti-smart-kubeconfig', variable: 'KUBECONFIG_ITI')]) {
                              // export BRANCH_NAME=$(cat /home/jenkins/branchname.txt)
                             sh '''
+                                echo ${BUILD_NUMBER} > /home/jenkins/build.txt
+                                echo ${BRANCH_NAME} > /home/jenkins/branchname.txt
                                 mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
                                 cat Deployment/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
                                 rm -f Deployment/deploy.yaml.tmp
