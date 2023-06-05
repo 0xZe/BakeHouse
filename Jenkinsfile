@@ -41,10 +41,7 @@ pipeline {
            
                       //  }
                     }
-                        
-                        else {
-                              echo "user choosed ${params.ENV}"
-                                 }
+              
                 }
             }
         }
