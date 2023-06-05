@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo 'build'
                 script{
-                    if (params.ENV == ${BRANCH_NAME}) {
+                    if (params.ENV = ${BRANCH_NAME}) {
                         withCredentials([usernamePassword(credentialsId: 'iti-smart-dockerhub', usernameVariable: 'USERNAME_ITI', passwordVariable: 'PASSWORD_ITI')]) {
                             sh '''
                                 docker login -u ${USERNAME_ITI} -p ${PASSWORD_ITI}
