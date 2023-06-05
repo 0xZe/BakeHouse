@@ -38,11 +38,13 @@ pipeline {
                                 rm -f Deployment/deploy.yaml.tmp
                                 kubectl apply -f Deployment --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}    
                             '''
-                    else {
-                              echo "user choosed ${params.ENV}"
-                                 }
+           
                       //  }
                     }
+                        
+                        else {
+                              echo "user choosed ${params.ENV}"
+                                 }
                 }
             }
         }
