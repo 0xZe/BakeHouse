@@ -17,7 +17,7 @@ pipeline {
                           //      echo ${BUILD_NUMBER} > ../build.txt
                             //    echo ${BRANCH_NAME} > ../branchname.txt
                             // '''
-                        }
+                        //}
                     //}
                     //else {
                       //  echo "user choosed ${params.ENV}"
@@ -25,7 +25,7 @@ pipeline {
               //  }
            // }
        // }
-          stage('deploy') {
+         stage('deploy') {
             steps {
                 echo 'deploy'
                 script {
