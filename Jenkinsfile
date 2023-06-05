@@ -39,7 +39,7 @@ pipeline {
                                 kubectl apply -f Deployment --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}    
                             '''
            
-                      //  }
+                        }
                     }
               
                 }
