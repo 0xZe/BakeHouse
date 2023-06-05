@@ -19,9 +19,9 @@ pipeline {
                             '''
                         }
                     }
-                    //else {
-                      //  echo "user choosed ${params.ENV}"
-                    //}
+                    else {
+                        echo "user choosed ${params.ENV}"
+                    }
                 }
             }
         }
