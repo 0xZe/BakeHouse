@@ -15,7 +15,7 @@ spec:
         app: bakehouse
     spec:
       containers:
-      - image: 0xze/bakehouseitismart:v${BUILD_NUMBER}
+      - image: 0xze/carrepairrelease:v${BUILD_NUMBER}
         name: bakehouse
         imagePullPolicy: Always
         ports:
