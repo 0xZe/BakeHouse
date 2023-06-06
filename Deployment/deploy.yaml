@@ -15,7 +15,7 @@ spec:
         app: bakehouse
     spec:
       containers:
-      - image: 0xze/carrepairrelease:v12
+      - image: 0xze/carrepair${BRANCH_NAME}:v${BUILD_NUMBER}
       ##v${BUILD_NUMBER}
         name: bakehouse
         imagePullPolicy: Always
