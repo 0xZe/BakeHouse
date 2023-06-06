@@ -25,23 +25,5 @@ pipeline {
                 }
             }
         }
-       // stage('deploy') {
-         //   steps {
-           //     echo 'deploy'
-             //   script {
-                    //if (params.ENV == "dev" || params.ENV == "test" || params.ENV == "prod") {
-               //         withCredentials([file(credentialsId: 'iti-smart-kubeconfig', variable: 'KUBECONFIG_ITI')]) {
-                 //           sh '''
-                   //             export BRANCH_NAME=$(cat ../branchname.txt)
-                     //           mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
-                       //         cat Deployment/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
-                         //       rm -f Deployment/deploy.yaml.tmp
-                           //     kubectl apply -f Deployment --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}
-                            //'''
-                      //  }
-                   // }
-                //}
-            //}
-        //}
     }
 }
