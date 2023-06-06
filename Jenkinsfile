@@ -4,27 +4,6 @@ pipeline {
         choice(name: 'ENV', choices: ['dev', 'test', 'prod',"release"])
     } 
     stages {
-        //stage('build') {
-          //  steps {
-            //    echo 'build'
-              //  script{
-                    //if (params.ENV == "release") {
-                //        withCredentials([usernamePassword(credentialsId: 'iti-smart-dockerhub', usernameVariable: 'USERNAME_ITI', passwordVariable: 'PASSWORD_ITI')]) {
-                  //          sh '''
-                    //            docker login -u ${USERNAME_ITI} -p ${PASSWORD_ITI}
-                      //          docker build -t 0xze/carrepair${BRANCH_NAME}:v${BUILD_NUMBER} .
-                        //        docker push 0xze/carrepair${BRANCH_NAME}:v${BUILD_NUMBER}
-                          //      echo ${BUILD_NUMBER} > ../build.txt
-                            //    echo ${BRANCH_NAME} > ../branchname.txt
-                            // '''
-                        //}
-                    //}
-                    //else {
-                      //  echo "user choosed ${params.ENV}"
-                    //}
-              //  }
-           // }
-       // }
          stage('deploy') {
             steps {
                 echo 'deploy'
@@ -39,9 +18,7 @@ pipeline {
                                 cat Deployment/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
                                 rm -f Deployment/deploy.yaml.tmp
                                 kubectl apply -f Deployment --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}    
-                            '''
-
-           
+                            '''    
                         }
                     }
               
