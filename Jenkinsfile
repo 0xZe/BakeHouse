@@ -1,11 +1,11 @@
 pipeline {
-    agent { label 'iti-smart' }
+    agent { label 'slave1' }
     stages {
          stage('deploy') {
             steps {
                 echo 'deploy'
                 script {
-                        withCredentials([file(credentialsId: 'iti-smart-kubeconfig', variable: 'KUBECONFIG_ITI')]) {
+                        withCredentials([file(credentialsId: 'slave-k8s-kubeconfig', variable: 'KUBECONFIG_ITI')]) {
                             
                                 sh '''
                                 export BUILD_NUMBER=$(cat /home/jenkins/build.txt )
