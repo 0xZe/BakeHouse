@@ -34,7 +34,7 @@ pipeline {
                              // export BRANCH_NAME=$(cat /home/jenkins/branchname.txt)
                             sh '''
                             
-                                export BRANCH_NAME=$(cat /home/jenkins/branchname.txt)
+                              
                                 export BUILD_NUMBER=$(cat /home/jenkins/build.txt )
                                 mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
                                 cat Deployment/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
