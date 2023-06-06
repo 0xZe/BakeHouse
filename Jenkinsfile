@@ -1,45 +1,50 @@
 pipeline {
     agent { label 'iti-smart' }
-    //parameters {
-      //  choice(name: 'ENV', choices: ['dev', 'test', 'prod',"release"])
-    //} 
+    parameters {
+        choice(name: 'ENV', choices: ['dev', 'test', 'prod',"release"])
+    } 
     stages {
-        stage('build') {
-            steps {
-                echo 'build'
-                script{
+        //stage('build') {
+          //  steps {
+            //    echo 'build'
+              //  script{
                     //if (params.ENV == "release") {
-                        withCredentials([usernamePassword(credentialsId: 'iti-smart-dockerhub', usernameVariable: 'USERNAME_ITI', passwordVariable: 'PASSWORD_ITI')]) {
-                            sh '''
-                                docker login -u ${USERNAME_ITI} -p ${PASSWORD_ITI}
-                                docker build -t 0xze/carrepair${BRANCH_NAME}:v${BUILD_NUMBER} .
-                                docker push 0xze/carrepair${BRANCH_NAME}:v${BUILD_NUMBER}
-                                echo ${BUILD_NUMBER} > ../build.txt
-                                echo ${BRANCH_NAME} > ../branchname.txt
-                            '''
-                        }
+                //        withCredentials([usernamePassword(credentialsId: 'iti-smart-dockerhub', usernameVariable: 'USERNAME_ITI', passwordVariable: 'PASSWORD_ITI')]) {
+                  //          sh '''
+                    //            docker login -u ${USERNAME_ITI} -p ${PASSWORD_ITI}
+                      //          docker build -t 0xze/carrepair${BRANCH_NAME}:v${BUILD_NUMBER} .
+                        //        docker push 0xze/carrepair${BRANCH_NAME}:v${BUILD_NUMBER}
+                          //      echo ${BUILD_NUMBER} > ../build.txt
+                            //    echo ${BRANCH_NAME} > ../branchname.txt
+                            // '''
+                        //}
                     //}
                     //else {
                       //  echo "user choosed ${params.ENV}"
                     //}
-                }
-            }
-        }
-        stage('deploy') {
+              //  }
+           // }
+       // }
+         stage('deploy') {
             steps {
                 echo 'deploy'
                 script {
-                    //if (params.ENV == "dev" || params.ENV == "test" || params.ENV == "prod") {
+                    if (params.ENV == "test" ) {
                         withCredentials([file(credentialsId: 'iti-smart-kubeconfig', variable: 'KUBECONFIG_ITI')]) {
+                            
+                             // export BRANCH_NAME=$(cat /home/jenkins/branchname.txt)
                             sh '''
-                                export BRANCH_NAME=$(cat ../branchname.txt)
+                                export BUILD_NUMBER=$(cat /home/jenkins/build.txt )
                                 mv Deployment/deploy.yaml Deployment/deploy.yaml.tmp
                                 cat Deployment/deploy.yaml.tmp | envsubst > Deployment/deploy.yaml
                                 rm -f Deployment/deploy.yaml.tmp
-                                kubectl apply -f Deployment --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}
+                                kubectl apply -f Deployment --kubeconfig ${KUBECONFIG_ITI} -n ${BRANCH_NAME}    
                             '''
-                      //  }
+
+           
+                        }
                     }
+              
                 }
             }
         }
