@@ -15,9 +15,10 @@ spec:
         app: bakehouse
     spec:
       containers:
-      - image: 0xze/carrepair${BRANCH_NAME}:v${BUILD_NUMBER}
+      - image: 0xze/carrepairrelease:v${BUILD_NUMBER}
         name: bakehouse
         imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources: {}
+##${BRANCH_NAME}
